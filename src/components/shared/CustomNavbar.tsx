@@ -80,7 +80,7 @@ const CustomNavbar = () => {
       <NavbarContent className="sm:hidden pr-3" justify="start">
         <NavbarBrand>
           <Link href="/" className="font-semibold text-secondary text-xl">
-             TechMaster <span className="text-primary ms-1">Trips</span>
+             TechMaster <span className="text-primary ms-1">Tips</span>
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -89,7 +89,7 @@ const CustomNavbar = () => {
       <NavbarContent className="hidden sm:flex gap-4" justify="start">
         <NavbarBrand>
           <Link href="/" className="font-semibold text-secondary text-xl">
-            TechMaster <span className="text-primary ms-1">Trips</span>
+            TechMaster <span className="text-primary ms-1">Tips</span>
           </Link>
         </NavbarBrand>
       </NavbarContent>

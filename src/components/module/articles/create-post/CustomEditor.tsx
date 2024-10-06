@@ -24,21 +24,21 @@ export const tagOptions = [
   },
 ];
 export const categoryOptions = [
-  { value: "Watch", name: "watch" },
-  { value: "Software Engineering", name: "software_engineering" },
-  { value: "Tech", name: "tech" },
-  { value: "ML", name: "ml" },
-  { value: "VR", name: "vr" },
-  { value: "Mobile", name: "mobile" },
-  { value: "Macbook", name: "macbook" },
-  { value: "Gaming", name: "gaming" },
-  { value: "Others", name: "others" },
+  { name: "Watch", value: "watch" },
+  { name: "Software Engineering", value: "software_engineering" },
+  { name: "Tech", value: "tech" },
+  { name: "ML", value: "ml" },
+  { name: "VR", value: "vr" },
+  { name: "Mobile", value: "mobile" },
+  { name: "Macbook", value: "macbook" },
+  { name: "Gaming", value: "gaming" },
+  { name: "Others", value: "others" },
 ];
 const initialValues: TFormValues = {
   title: "",
   content: "",
   tag: "regular", // Default tag
-  category: "travel", // Default category
+  category: "tech", // Default category
   image: null,
 };
 export const createPostValidationSchema = Yup.object<TFormValues>({

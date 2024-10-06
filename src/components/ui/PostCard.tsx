@@ -123,9 +123,9 @@ const PostCard = ({ data, editingSystem = false }: TPostCard) => {
                 <div className="w-full flex justify-center">
                   <DownVote votes={item.downVotes} id={item._id} />
                 </div>
-                <p className="flex items-center gap-2 w-full p-2 justify-center">
+                <Link href={`/articles/${item._id}`} className="flex items-center gap-2 w-full p-2 justify-center">
                   <FaRegCommentAlt /> {item.commentsCount}
-                </p>
+                </Link>
               </div>
             </div>
           );

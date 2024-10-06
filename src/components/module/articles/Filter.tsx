@@ -23,16 +23,16 @@ export const tagOptions = [
   },
 ];
 export const categoryOptions = [
-  { value: "Watch", label: "watch" },
-  { value: "Software Engineering", label: "software_engineering" },
-  { value: "Tech", label: "tech" },
-  { value: "ML", label: "ml" },
-  { value: "VR", label: "vr" },
-  { value: "Mobile", label: "mobile" },
-  { value: "Macbook", label: "macbook" },
-  { value: "Gaming", label: "gaming" },
-  { value: "Others", label: "others" },
-];
+  { label: "Watch", value: "watch" },
+  { label: "Software Engineering", value: "software_engineering" },
+  { label: "Tech", value: "tech" },
+  { label: "ML", value: "ml" },
+  { label: "VR", value: "vr" },
+  { label: "Mobile", value: "mobile" },
+  { label: "Macbook", value: "macbook" },
+  { label: "Gaming", value: "gaming" },
+  { label: "Others", value: "others" },
+];;
 
 const Filter = () => {
   const router = useRouter();
@@ -42,6 +42,12 @@ const Filter = () => {
     params.set(key, value);
     router.push(`?${params.toString()}`);
   };
+
+  const handleReset = () => {
+    const params = new URLSearchParams();
+    router.push(`?${params.toString()}`); // Clear all query parameters
+  };
+ 
 
   return (
     <div className="pb-10 mt-5">
@@ -77,6 +83,12 @@ const Filter = () => {
         placeholder="Search here..."
         className="h-[35px] px-3 w-full border-0 focus:outline-none focus-visible:ring-0"
       />
+      <button
+        onClick={handleReset}
+        className="mt-4 px-4 py-2 bg-red-400 text-white rounded"
+      >
+        Reset Filters
+      </button>
     </div>
   );
 };

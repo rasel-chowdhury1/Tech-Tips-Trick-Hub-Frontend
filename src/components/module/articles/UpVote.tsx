@@ -3,7 +3,7 @@ import { TUser, useCurrentUser } from "@/src/redux/features/auth/authSlice";
 import { useUpvoteMutation } from "@/src/redux/features/vote";
 import { useAppSelector } from "@/src/redux/hooks";
 import { TErrorResponse } from "@/src/types";
-import { FaAnglesUp } from "react-icons/fa6";
+import { GrLike } from "react-icons/gr";
 import { toast } from "sonner";
 export type TVoteProps = {
   votes: string[];
@@ -38,7 +38,7 @@ const UpVote = ({ votes, id }: TVoteProps) => {
       onClick={() => handleUpVote(id)}
       className="flex items-center justify-center gap-2 p-2 w-full"
     >
-      <FaAnglesUp className={`${hasVoted ? "text-primary" : ""}`} />{" "}
+      <GrLike className={`${hasVoted ? "text-blue-500" : ""} hover:text-blue-500`} />{" "}
       {votes?.length}
     </button>
   );

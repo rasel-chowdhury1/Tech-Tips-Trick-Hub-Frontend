@@ -1,4 +1,4 @@
-import sectionImg from "@/src/assets/banner/b4.png";
+import sectionImg from "@/src/assets/banner/techMaster5.png";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
 const Prepare = () => {
@@ -14,17 +14,13 @@ const Prepare = () => {
         />
       </div>
       <div className="lg:w-[60%] flex flex-col justify-between">
-        <h2 className="heading">Prepare yourself to see the world with us</h2>
+        <h2 className="heading">Helping You Use Technology Better</h2>
         <p>
-          Unlock expert travel insights and tips to make your journeys smoother,
-          smarter, and unforgettable. From hidden gems to must-know travel
-          hacks, our articles will ensure you&apos;re always prepared for the
-          road ahead. Benefit from the experiences of fellow travelers and
-          elevate your adventures with ease.
+        We envision a world where everyone feels empowered to harness the full potential of technology. Whether it's fixing everyday tech issues, exploring the latest software, or finding the best tools for your work, Tech Tips & Tricks is here to guide you every step of the way
         </p>
         <div>
           <Button className="custom-btn mt-5" radius="sm">
-            Search Places
+          Use Technology
           </Button>
         </div>
       </div>

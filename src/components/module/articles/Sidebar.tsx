@@ -4,7 +4,7 @@ import { useGetPopularPostsQuery } from "@/src/redux/features/post";
 import { useAppSelector } from "@/src/redux/hooks";
 import { TPopularPost } from "@/src/types";
 import Link from "next/link";
-import { FaAnglesUp } from "react-icons/fa6";
+import { GrLike } from "react-icons/gr";
 import { LiaUserEditSolid } from "react-icons/lia";
 import Subscribe from "../../actions/Subscribe";
 import { useEffect, useState } from "react";
@@ -79,7 +79,7 @@ const Sidebar = () => {
                     {/* <p>{item.content.slice(0, 70)}...</p> */}
                     <div className="flex items-center justify-between">
                       <p className="flex items-center gap-2">
-                        <FaAnglesUp /> {item?.upVotes?.length}
+                        <GrLike /> {item?.upVotes?.length}
                       </p>
                       <Link
                         href={`/profile/${item?.author?._id}`}

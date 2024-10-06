@@ -1,4 +1,4 @@
-import { FaAnglesDown } from "react-icons/fa6";
+import { GrDislike } from "react-icons/gr";
 import { TVoteProps } from "./UpVote";
 import { toast } from "sonner";
 import { TErrorResponse } from "@/src/types";
@@ -34,7 +34,7 @@ const DownVote = ({ votes, id }: TVoteProps) => {
       onClick={() => handleDownVote(id)}
       className="flex items-center justify-center w-full gap-2 p-2"
     >
-      <FaAnglesDown className={`${hasVoted ? "text-primary" : ""}`} />{" "}
+      <GrDislike className={`${hasVoted ? "text-primary" : ""} hover:text-primary`} />{" "}
       {votes?.length}
     </button>
   );

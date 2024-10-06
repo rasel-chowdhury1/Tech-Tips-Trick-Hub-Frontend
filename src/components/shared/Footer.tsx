@@ -14,10 +14,7 @@ const Footer = () => {
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-primary">TechMaster Tips</h2>
           <p className="text-sm text-dark dark:text-white">
-            Welcome to TechMaster Tips! We are a community of passionate
-            travelers sharing tips, guides, and personal stories to help you
-            plan unforgettable journeys. Discover new destinations, and connect
-            with fellow explorers!
+            Welcome to TechMaster Tips! Our mission is to empower tech enthusiasts, professionals, and curious learners by providing expert insights, real-world advice, and a community-driven space for sharing valuable tech knowledge.
           </p>
         </div>
 

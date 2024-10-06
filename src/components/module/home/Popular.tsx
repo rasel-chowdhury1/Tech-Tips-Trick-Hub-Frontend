@@ -1,29 +1,31 @@
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
-
+import b1Img from "@/src/assets/banner/techMaster3.png";
+import b3Img from "@/src/assets/banner/techMaster4.png";
+import b2Img from "@/src/assets/banner/techMaster6.png";
 const articles = [
   {
-    title: "Top 10 Hidden Gems to Visit in Europe",
+    title: "Understanding Cloud Architecture",
     content:
-      "Discover the lesser-known but equally breathtaking destinations in Europe that will leave you in awe, from charming villages to stunning coastlines.",
+      "Cloud computing has revolutionized the way software applications are deployed and scaled.",
     upvotes: 150,
-    image: "/popular/Europe.jpeg",
-    author: "Emily Wanderlust",
+    image: b1Img,
+    author: "Piklu",
   },
   {
-    title: "How to Travel on a Budget Without Sacrificing Comfort",
+    title: "Getting Started with Machine Learning",
     content:
-      "Learn practical tips on how to save money while traveling, from finding affordable accommodations to scoring the best flight deals, without compromising your comfort.",
+      "Machine learning is transforming industries by enabling systems to learn from data..",
     upvotes: 250,
-    image: "/popular/comfort.jpg",
-    author: "John Backpacker",
+    image: b3Img,
+    author: "Rasel",
   },
   {
-    title: "The Ultimate Packing Guide for Every Type of Trip",
+    title: "Natural Language Processing with Python",
     content:
-      "Master the art of packing with our comprehensive guide that covers everything from short getaways to long-term travel, ensuring you have everything you need without overpacking.",
+      "NLP is a branch of AI that enables computers to understand and process human language.",
     upvotes: 300,
-    image: "/popular/Packing-Guide.jpg",
+    image: b2Img,
     author: "Sara Nomad",
   },
 ];

@@ -6,8 +6,8 @@ const page = () => {
   return (
     <div>
       <Banner />
-      <Popular />
       <Prepare />
+      <Popular />
     </div>
   );
 };
