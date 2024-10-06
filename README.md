@@ -6,7 +6,7 @@ The **Tech Tips & Tricks** project is a dynamic full-stack web application desig
 
 ## Live URL
 
-> [Tech Tips & Tricks Hub](https://your-live-site-link.com)
+> [Tech Tips & Tricks Hub](https://tech-tips-trick-hub-frontend-nu.vercel.app)
 
 ### Credentials
 
@@ -93,6 +93,7 @@ The **Tech Tips & Tricks** project is a dynamic full-stack web application desig
 
 1. **Login/Registration Page**: Secure forms for user sign-up and login.
 <!-- 2. **User Dashboard**: Personalized dashboard to manage profiles, posts, and payment history. -->
+2. **User Dashboard**: click profile nav item.
 3. **Admin Dashboard**: Admin control panel to manage users, content, and payments.
 4. **Profile Page**: Manage posts, view followers/following, and edit personal details.
 5. **News Feed**: Displays posts from the community with search and filtering options.
@@ -107,4 +108,4 @@ The **Tech Tips & Tricks** project is a dynamic full-stack web application desig
 ### Step 1: Clone the repository
 
 ```bash
-git clone https://github.com/your-repo/tech-tips-hub.git
+git clone https://github.com/rasel-chowdhury1/Tech-Tips-Trick-Hub-Frontend
