@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
 
 import TechForm from "@/src/components/form/TechForm";
 import { TechInput } from "@/src/components/form/TechInput";
@@ -11,10 +12,13 @@ import TechSelect from "@/src/components/form/TechSelect";
 import TechDatePicker from "@/src/components/form/TechDatePicker";
 import { dateToISO } from "@/src/utils/dateToISo";
 import { useUserRegistration } from "@/src/hooks/auth.hook";
+import uploadImageToCloudinary from "@/src/utils/uploadImage";
 
 const RegisterPage = () => {
-  const { mutate: handleUserRegistration, isPending } = useUserRegistration();
+  const { mutate: handleUserRegistration } = useUserRegistration();
   const [isVisible, setIsVisible] = React.useState(false);
+  const [imageUploadLoading, setImageUploadLoading] = useState(false);
+  const [profileImage, setProfileImage] = useState<string | "">("");
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const genderOptions = [
@@ -24,14 +28,33 @@ const RegisterPage = () => {
     { key: "other", label: "Other" },
   ];
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const userData = {
       ...data,
       birthDate: dateToISO(data.birthDate),
-      profileImage: "https://i.ibb.co/195sdYw/prince-1.png",
+      profileImage: profileImage,
     };
-    console.log("user data register page -> ", userData)
+
     handleUserRegistration(userData);
+  };
+
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      return;
+    }
+    setImageUploadLoading(true);
+
+    try {
+      const files = await uploadImageToCloudinary(e.target.files);
+
+      if (files && files.length > 0) {
+        setProfileImage(files);
+      }
+    } catch (error: any) {
+      toast.error("Error uploading image:", error);
+    } finally {
+      setImageUploadLoading(false);
+    }
   };
 
   return (
@@ -146,12 +169,18 @@ const RegisterPage = () => {
               >
                 Upload image
               </label>
-              <input className="hidden" id="image" type="file" />
+              <input
+                className="hidden"
+                id="image"
+                type="file"
+                onChange={(e) => handleImageChange(e)}
+              />
             </div>
 
             <button
               className="w-full py-2 text-white mt-4 bg-red-500 font-semibold"
               type="submit"
+              disabled={imageUploadLoading}
             >
               Register
             </button>

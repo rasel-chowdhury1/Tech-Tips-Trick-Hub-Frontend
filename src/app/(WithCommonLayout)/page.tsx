@@ -1,14 +1,13 @@
-import React from "react";
-
-import BecomeAmember from "@/src/components/UI/BecomeAmember/BecomeAmember";
 import MainNewsFeed from "@/src/components/NewsFeedSection/MainNewsFeed";
+import BecomeAmember from "@/src/components/UI/BecomeAmember/BecomeAmember";
 
-export default function Home() {
+const Page = () => {
   return (
     <div>
       <BecomeAmember />
-
       <MainNewsFeed />
     </div>
   );
-}
+};
+
+export default Page;

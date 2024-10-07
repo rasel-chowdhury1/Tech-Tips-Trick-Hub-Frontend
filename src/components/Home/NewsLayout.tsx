@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
 import { CalendarIcon } from "lucide-react";
-import { FaRegComment } from "react-icons/fa";
+import { FaRegComment, FaVoteYea } from "react-icons/fa";
 import Link from "next/link";
 
 import bannerImage from "../../assets/watch.jpg";
+import LayoutSkeleton from "../UI/Skeleton/LayoutSkeleton";
 
 import { PostProps } from "@/src/types";
 
@@ -16,14 +17,18 @@ const categoryImageMapping: Record<string, string> = {
   Watch: "https://i.ibb.co/16wN032/watch.jpg",
 };
 
-export default function NewsLayout({ posts }: PostProps) {
+export default function NewsLayout({ posts, layoutLoading }: PostProps) {
   const uniqueCategories = [...new Set(posts.map((post) => post.category))];
 
-  // console.log(uniqueCategories);
+  if (layoutLoading) {
+    return <LayoutSkeleton />;
+  }
 
   return (
     <div className="container mx-auto  py-8 mt-16">
-      <h1 className="text-3xl sm:text-4xl font-bold mb-8">Whats New</h1>
+      <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-pink-500">
+        Whats New
+      </h1>
       <div className="grid grid-cols-1  lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8 border-r">
           {posts.slice(6).map((post) => (
@@ -31,11 +36,11 @@ export default function NewsLayout({ posts }: PostProps) {
               key={post?._id}
               className="flex flex-col cursor-pointer md:flex-row overflow-hidden border-b border-gray-300 pb-4 last:border-b-0"
             >
-              <div className="relative overflow-hidden group">
-                <div className="transition-transform duration-300 group-hover:scale-110">
+              <div className="relative overflow-hidden group max-w-[400px]">
+                <div className="transition-transform duration-300 group-hover:scale-110 ">
                   <Image
                     alt={post?.title || "Post Image"}
-                    className="w-96 h-40 object-cover"
+                    className="w-full h-auto max-w-[400px] object-cover"
                     height={140}
                     src={post?.images[0] || bannerImage}
                     width={384}
@@ -52,13 +57,18 @@ export default function NewsLayout({ posts }: PostProps) {
                 >
                   {post.title || "Post Title"}
                 </Link>
-                <div className="flex items-center text-sm">
-                  <span>By {post?.author?.name || "Author"}</span>
+                <div className="flex items-center md:text-[10px] text-[8px]">
+                  <span className="md:text-[14px] text-xs">
+                    By {post?.author?.name || "Author"}
+                  </span>
                   <span className="mx-2">•</span>
                   <CalendarIcon className="w-4 h-4 mr-1" />
                   <span>
                     {new Date(post?.createdAt).toLocaleDateString() || "Date"}
                   </span>
+                  <span className="mx-2">•</span>
+                  <FaVoteYea className="w-4 h-4 mr-2" />
+                  <span>{post?.upVotes?.length} upVotes</span>
                   <span className="mx-2">•</span>
                   <Link
                     className="flex items-center justify-center hover:text-pink-500 transition-colors"
@@ -119,8 +129,6 @@ export default function NewsLayout({ posts }: PostProps) {
               <div className="grid grid-cols-3 gap-4">
                 {uniqueCategories.map((category, index) => {
                   const categoryImage = categoryImageMapping[category] || "";
-
-                  console.log(category, categoryImage);
 
                   return (
                     <div

@@ -24,6 +24,7 @@ const LoginPage = () => {
   const { isSetLoading: UserLoading } = useUser();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log({data})
     handleUserLogin(data);
     UserLoading(true);
   };

@@ -1,16 +1,21 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { CalendarIcon, ShareIcon } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import Link from "next/link";
-import { FaRegComment } from "react-icons/fa";
+import { FaRegComment, FaVoteYea } from "react-icons/fa";
 
 import bannerImage from "../../assets/watch.jpg";
 import satelliteImage from "../../assets/satelight.jpg";
+import HeroSectionSkeleton from "../UI/Skeleton/HeroSectionSkeleton";
 
 import { PostProps } from "@/src/types";
 
-const HeroSection = ({ posts }: PostProps) => {
+const HeroSection = ({ posts, heroLoading }: PostProps) => {
+  if (heroLoading) {
+    return <HeroSectionSkeleton />;
+  }
+
   return (
     <div className="">
       <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3">
@@ -36,7 +41,7 @@ const HeroSection = ({ posts }: PostProps) => {
               >
                 {posts[0]?.title || "Main Article Title"}
               </Link>
-              <div className="flex items-center text-white text-sm">
+              <div className="flex items-center text-white md:text-[10px] text-[8px]">
                 <span>By {posts[0]?.author?.name || "Author"}</span>
                 <span className="mx-2">•</span>
                 <CalendarIcon className="w-4 h-4 mr-1" />
@@ -44,8 +49,8 @@ const HeroSection = ({ posts }: PostProps) => {
                   {new Date(posts[0]?.createdAt).toLocaleDateString() || "Date"}
                 </span>
                 <span className="mx-2">•</span>
-                <ShareIcon className="w-4 h-4 mr-1" />
-                <span>{posts[0]?.views || "Views"} Views</span>
+                <FaVoteYea className="w-4 h-4 mr-2" />
+                <span>{posts[0]?.upVotes?.length} upVotes</span>
                 <span className="mx-2">•</span>
                 <Link
                   className="flex items-center justify-center hover:text-pink-500 transition-colors"
@@ -87,7 +92,7 @@ const HeroSection = ({ posts }: PostProps) => {
                   {article.title || "Article Title"}
                 </Link>
 
-                <div className="flex items-center text-white text-sm">
+                <div className="flex items-center text-white md:text-[10px] text-[8px]">
                   <span>By {article?.author?.name || "Author"}</span>
                   <span className="mx-2">•</span>
                   <CalendarIcon className="w-4 h-4 mr-1" />
@@ -95,9 +100,10 @@ const HeroSection = ({ posts }: PostProps) => {
                     {new Date(article?.createdAt).toLocaleDateString() ||
                       "Date"}
                   </span>
+
                   <span className="mx-2">•</span>
-                  <ShareIcon className="w-4 h-4 mr-1" />
-                  <span>{article?.views || "Views"} Views</span>
+                  <FaVoteYea className="w-4 h-4 mr-2" />
+                  <span>{article?.upVotes?.length} upVotes</span>
                   <span className="mx-2">•</span>
                   <Link
                     className="flex items-center justify-center hover:text-pink-500 transition-colors"

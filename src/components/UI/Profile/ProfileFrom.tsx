@@ -10,6 +10,9 @@ import { userUpdateValidationSchema } from "@/src/schema/login.schema";
 import { dateToISO } from "@/src/utils/dateToISo";
 import { useUser } from "@/src/context/user.provider";
 import { useUserUpdate } from "@/src/hooks/auth.hook";
+import { ChangeEvent, useState } from "react";
+import uploadImageToCloudinary from "@/src/utils/uploadImage";
+import { toast } from "sonner";
 
 const genderOptions = [
   { key: "select-gender", label: "Select Gender" },
@@ -19,6 +22,11 @@ const genderOptions = [
 ];
 const ProfileForm = () => {
   const { user, isSetLoading } = useUser();
+
+  const [profileImage, setProfileImage] = useState<string | "">(
+    user?.profileImage as string
+  );
+  const [imageUploadLoading, setImageUploadLoading] = useState(false);
 
   const defaultValues = {
     name: user?.name || "",
@@ -31,20 +39,40 @@ const ProfileForm = () => {
 
   const userId = user?._id;
   const { mutate: updateUserMutate, isPending } = useUserUpdate(
-    userId as string,
+    userId as string
   );
 
   const onSubmit = async (data: any) => {
     const userData = {
       ...data,
       birthDate: dateToISO(data.birthDate),
+      profileImage: profileImage,
     };
+    console.log(userData);
 
     try {
       await updateUserMutate(userData);
       isSetLoading(true);
-    } catch (error) {
-      console.error("Failed to update user:", error);
+    } catch (error: any) {
+      new Error(error.message || "Failed to update user");
+    }
+  };
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      return;
+    }
+    setImageUploadLoading(true);
+
+    try {
+      const files = await uploadImageToCloudinary(e.target.files);
+
+      if (files && files.length > 0) {
+        setProfileImage(files);
+      }
+    } catch (error: any) {
+      toast.error("Error uploading image:", error);
+    } finally {
+      setImageUploadLoading(false);
     }
   };
 
@@ -126,15 +154,29 @@ const ProfileForm = () => {
             />
           </div>
         </div>
+        <div className="mb-4 w-full">
+          <label
+            className="flex h-14 w-full cursor-pointer items-center justify-center rounded-xl border-2 border-default-200 text-default-500 shadow-sm transition-all duration-100 hover:border-default-400"
+            htmlFor="image"
+          >
+            Upload image
+          </label>
+          <input
+            className="hidden"
+            id="image"
+            type="file"
+            onChange={(e) => handleImageChange(e)}
+          />
+        </div>
 
         {/* Submit Button */}
         <div className="mt-6 w-full pb-4 ">
           <button
-            className={`w-full px-6 py-3 ${isPending ? "bg-gray-400" : "bg-blue-600"} text-white`}
-            disabled={isPending}
+            className={`w-full px-6 py-3 ${isPending ? "bg-gray-400" : "bg-pink-600"} text-white`}
+            disabled={imageUploadLoading || isPending}
             type="submit"
           >
-            {isPending ? "Updating..." : "Submit"}
+            Update Profile
           </button>
         </div>
       </TechForm>

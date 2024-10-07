@@ -7,7 +7,6 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import {
   CalendarDays,
   BarChart2,
-  EyeIcon,
   ThumbsDown,
   ThumbsUp,
   UserPlus,
@@ -20,6 +19,7 @@ import {
   Button,
   Divider,
 } from "@nextui-org/react";
+import { FaVoteYea } from "react-icons/fa";
 
 import TechForm from "../../form/TechForm";
 import { TechTextArea } from "../../form/TechTextAera";
@@ -32,6 +32,7 @@ import {
   useVotePost,
 } from "@/src/hooks/post.hooks";
 import { TPost } from "@/src/types";
+import { useToggleFollow } from "@/src/hooks/user.hook";
 
 const PostData = ({ post }: { post: TPost }) => {
   const { user } = useUser();
@@ -41,8 +42,8 @@ const PostData = ({ post }: { post: TPost }) => {
   const { mutate: createVote } = useVotePost();
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
   const [content, setContent] = useState<string>("");
-  const [isLiked, setIsLiked] = useState<boolean>(false);
-  const [isDisliked, setIsDisliked] = useState<boolean>(false);
+
+  const { mutate: createFollow } = useToggleFollow();
 
   const handleSubmitComment: SubmitHandler<FieldValues> = (data) => {
     const commentInfo = {
@@ -73,20 +74,18 @@ const PostData = ({ post }: { post: TPost }) => {
     handleEditComment({ postId: post?._id, commentId, comment: { content } });
     setEditingCommentId(null);
   };
-  const handleFollow = () => {
-    // Implement follow functionality here
-    console.log("Followed!");
+  const handleFollow = (followingId: string) => {
+    createFollow(followingId);
   };
   const handleVotes = (postId: string, action: string) => {
-    if (action === "upvote") {
-      setIsLiked(true);
-      setIsDisliked(false);
-    } else if (action === "downvote") {
-      setIsDisliked(true);
-      setIsLiked(false);
-    }
     createVote({ postId, action });
   };
+  // const hasUpvoted = post?.upVotes?.includes(user?._id || "");
+
+  // const hasDownvoted = post?.downVotes?.includes(user?._id || "");
+  const hasUpvoted = post?.upVotes || 0 ;
+
+  const hasDownvoted = post?.downVotes || 0;
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -109,22 +108,29 @@ const PostData = ({ post }: { post: TPost }) => {
               </div>
             </div>
             <div>
-              <Button
-                size="sm"
-                variant="bordered"
-                onClick={handleFollow}
-                // radius="none"
-                className="bg-blue-700 text-white"
-              >
-                <UserPlus className="w-4 h-4 mr-2" />
-                Follow
-              </Button>
+              {post?.author?.followers?.includes(user?._id) ? (
+                <Button
+                  className="rounded bg-blue-700 light light:text-white"
+                  onClick={() => handleFollow(post?.author?._id)}
+                >
+                  <UserPlus className="w-4 h-4 mr-1" />
+                  Unfollow
+                </Button>
+              ) : (
+                <Button
+                  className="rounded bg-blue-700 light light:text-white"
+                  onClick={() => handleFollow(post?.author?._id)}
+                >
+                  <UserPlus className="w-4 h-4 mr-1" />
+                  Follow
+                </Button>
+              )}
             </div>
           </div>
         </CardHeader>
         <CardBody>
           <h1 className="text-3xl font-bold mb-2">{post?.title}</h1>
-          <p className="text-muted-foreground mb-3 ">{post?.category}</p>
+
           <div className="relative mb-6">
             <Image
               alt="Snowy mountain landscape"
@@ -153,10 +159,10 @@ const PostData = ({ post }: { post: TPost }) => {
               Create Relevant Content
             </h2>
             <p className="mb-6">
-              You'll be posting loads of engaging content, so be sure to keep
+              You will be posting loads of engaging content, so be sure to keep
               your blog organized with Categories that also allow readers to
               explore more of what interests them. Each category of your blog
-              has its own page that's fully customizable. Add a catchy title, a
+              has its own page thats fully customizable. Add a catchy title, a
               brief description and a beautiful image to the category page
               header to truly make it your own. You can also add tags (#vacation
               #dream #summer) throughout your posts to reach more people, and
@@ -170,7 +176,8 @@ const PostData = ({ post }: { post: TPost }) => {
           <div className="flex flex-wrap items-center justify-between w-full gap-4">
             <div className="flex space-x-4 items-center">
               <Button size="sm" variant="ghost">
-                <EyeIcon className="w-4 h-4 mr-2" />0 Views
+                <FaVoteYea className="w-4 h-4 mr-2" />
+                {post?.upVotes?.length || 0} Upvotes
               </Button>
               <Button size="sm" variant="ghost">
                 <BarChart2 className="w-4 h-4 mr-2" />
@@ -179,19 +186,34 @@ const PostData = ({ post }: { post: TPost }) => {
             </div>
             <div className="flex items-center space-x-2">
               <Button
-                className={isLiked ? "text-blue-500 border-blue-500" : ""}
+                className={`${
+                  hasUpvoted
+                    ? "bg-blue-500 text-white"
+                    : "text-blue-500 border-blue-500"
+                }`}
                 size="sm"
                 variant="bordered"
-                onClick={() => handleVotes(post?._id, "upvote")}
+                onClick={() =>
+                  handleVotes(post?._id, hasUpvoted ? "removeUpvote" : "upvote")
+                }
               >
                 <ThumbsUp className={"w-4 h-4 mr-2 "} />
                 Like
               </Button>
               <Button
-                className={isDisliked ? "text-red-500 border-red-500" : ""}
+                className={`${
+                  hasDownvoted
+                    ? "bg-red-500 text-white"
+                    : "text-red-500 border-red-500"
+                }`}
                 size="sm"
                 variant="bordered"
-                onClick={() => handleVotes(post?._id, "downvote")}
+                onClick={() =>
+                  handleVotes(
+                    post?._id,
+                    hasDownvoted ? "removeDownvote" : "downvote",
+                  )
+                }
               >
                 <ThumbsDown className={"w-4 h-4 mr-2"} />
                 Dislike
@@ -205,7 +227,7 @@ const PostData = ({ post }: { post: TPost }) => {
         <CardHeader>
           <h2 className="text-2xl font-semibold">Comments</h2>
         </CardHeader>
-        <CardBody>
+        <CardBody className="overflow-y-auto max-h-60">
           {post?.comments.map((comment) => (
             <div key={comment._id} className="mb-6 last:mb-0">
               <div className="flex items-start space-x-4">
@@ -278,24 +300,24 @@ const PostData = ({ post }: { post: TPost }) => {
               <Divider className="my-4" />
             </div>
           ))}
-          <TechForm onSubmit={handleSubmitComment}>
-            <TechTextArea
-              label="write a comment"
-              name="content"
-              radius="none"
-              variant="bordered"
-            />
-            <Button
-              className="mt-4"
-              radius="none"
-              size="sm"
-              type="submit"
-              variant="bordered"
-            >
-              {isPending && isSuccess ? "Posting..." : "Post Comment"}
-            </Button>
-          </TechForm>
         </CardBody>
+        <TechForm onSubmit={handleSubmitComment}>
+          <TechTextArea
+            label="write a comment"
+            name="content"
+            radius="none"
+            variant="bordered"
+          />
+          <Button
+            className="mt-4"
+            radius="none"
+            size="sm"
+            type="submit"
+            variant="bordered"
+          >
+            {isPending && isSuccess ? "Posting..." : "Post Comment"}
+          </Button>
+        </TechForm>
       </Card>
     </div>
   );

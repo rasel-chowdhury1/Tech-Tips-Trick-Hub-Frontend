@@ -15,8 +15,8 @@ const Page = () => {
         <div className="container mx-auto text-center mt-10">
           <h2 className="text-2xl font-bold">Meet Our Publishing Authors</h2>
           <p className="mt-4 text-gray-500">
-            Wherever & whenever you need us. We are here for you – contact us
-            for all your support needs.
+            Wherever & whenever you need us. We are here for you contact us for
+            all your support needs.
             <br />
             Be it technical, general queries, or information support.
           </p>

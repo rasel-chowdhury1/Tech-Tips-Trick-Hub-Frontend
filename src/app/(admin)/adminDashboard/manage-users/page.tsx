@@ -1,8 +1,11 @@
+import Container from "@/src/components/UI/Container";
+import ManageUsersTable from "@/src/components/UI/ManageUsersTable/ManageUsersTable";
+
 const Page = () => {
   return (
-    <div>
-      <h2>Welcome to the Page user page</h2>
-    </div>
+    <Container>
+      <ManageUsersTable />
+    </Container>
   );
 };
 

@@ -29,7 +29,7 @@ const TechDatePicker = ({
           className="min-w-full sm:min-w-[225px]"
           label={label}
           {...fields}
-          errorMessage={errors[name] ? (errors[name].message as string) : ""}
+          errorMessage={errors[name] ? (errors[name]?.message as string) : ""}
           isInvalid={!!errors[name]}
           radius={radius}
           variant={variant}

@@ -1,13 +1,13 @@
 "use client";
-import React from "react";
+import { useState } from "react";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import Link from "next/link";
 
 import PremiumMonthlyMember from "@/src/components/UI/BecomeAmember/PremiumMonthlyMember";
 import PremiumYearlyMember from "@/src/components/UI/BecomeAmember/PremiumYearlyMember";
 
-export default function page() {
-  const [selected, setSelected] = React.useState("photos");
+export default function Page() {
+  const [selected, setSelected] = useState<string>("pay monthly");
 
   return (
     <div>
@@ -40,7 +40,7 @@ export default function page() {
             aria-label="Options"
             selectedKey={selected}
             variant="bordered"
-            onSelectionChange={setSelected}
+            onSelectionChange={(key) => setSelected(key.toString())}
           >
             <Tab key="pay monthly" title="Pay Monthly">
               <Card>

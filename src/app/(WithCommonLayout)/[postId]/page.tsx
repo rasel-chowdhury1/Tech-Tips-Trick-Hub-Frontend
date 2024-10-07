@@ -10,6 +10,7 @@ interface PostProps {
 }
 const PostDetails = async ({ params: { postId } }: PostProps) => {
   const { data } = await getPostById(postId);
+  console.log("data -> ",{data})
 
   return (
     <>

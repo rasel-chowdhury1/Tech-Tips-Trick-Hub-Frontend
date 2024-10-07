@@ -62,7 +62,7 @@ axiosInstance.interceptors.request.use(
   function (config) {
     const cookieStore = cookies();
     const accessToken = cookieStore.get("accessToken")?.value;
-    console.log({accessToken})
+
     if (accessToken) {
       config.headers.Authorization = accessToken;
     }
@@ -81,25 +81,22 @@ axiosInstance.interceptors.response.use(
   async function (error) {
     const { config } = error;
 
-    // Check for 401 response
     if (error.response?.status === 401 && !config?.sent) {
       config.sent = true;
       try {
         const res = await getNewAccessToken();
         const accessToken = res.data.accessToken;
 
-        // Update the Authorization header and cookies
         config.headers["Authorization"] = accessToken;
         cookies().set("accessToken", accessToken);
 
-        return axiosInstance(config); // Retry the original request
-      } catch (refreshError) {
-        console.error("Failed to refresh token:", refreshError);
-        // Optionally handle refresh error (e.g., redirect to login)
+        return axiosInstance(config);
+      } catch (refreshError: any) {
+        throw new Error(refreshError.response.data.message || "Failed to");
       }
     }
 
-    return Promise.reject(error); // Reject the promise for any other error
+    return Promise.reject(error);
   },
 );
 

@@ -101,9 +101,9 @@ export const getMyPosts = async () => {
 
     if (data?.success) {
       revalidateTag("post");
-
-      return;
     }
+
+    return data;
   } catch (error: any) {
     throw new Error(error);
   }

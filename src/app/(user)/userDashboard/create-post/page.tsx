@@ -1,8 +1,11 @@
+import Container from "@/src/components/UI/Container";
+import CreatePost from "@/src/components/UI/CreatePost/CreatePost";
+
 const Page = () => {
   return (
-    <div>
-      <h2>Welcome to the Page post</h2>
-    </div>
+    <Container>
+      <CreatePost />
+    </Container>
   );
 };
 
