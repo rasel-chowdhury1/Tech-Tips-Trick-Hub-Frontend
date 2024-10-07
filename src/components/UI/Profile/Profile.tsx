@@ -20,7 +20,7 @@ export default function Profile() {
               alt="Profile picture"
               className="rounded-full border"
               height={150}
-              src={user?.profileImage || "https://i.ibb.co/hBpV37F/avater.png"}
+              src={user?.profileImage || "/hBpV37F/avater.png"}
               width={150}
             />
             <button className="absolute bottom-0 right-0 bg-gray-800 text-white rounded-full p-2">

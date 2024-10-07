@@ -43,7 +43,7 @@ export const logOut = () => {
 
 export const getCurrentUser = async () => {
   const accessToken = cookies().get("accessToken")?.value;
-
+  console.log("from AuthServices",{accessToken})
   if (accessToken) {
     try {
       const { data } = await axiosInstance.get("/user/get-me");

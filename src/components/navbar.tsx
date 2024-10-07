@@ -28,6 +28,8 @@ export const Navbar = () => {
   // const navbarBackground = theme === "light" ? "bg-white" : "bg-[#2B2B2B]";
   const { user } = useUser();
 
+  console.log("from navbar component -> ",user)
+
   return (
     <NextUINavbar
       className="light light:bg-[#1A1A1A] dark dark:bg-[#1A1A1A] "
