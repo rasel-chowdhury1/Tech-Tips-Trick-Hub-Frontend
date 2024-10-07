@@ -1,20 +1,12 @@
-import Sidebar from "@/src/components/UI/SideBar/SideBar";
-
-const Layout = ({ children }: { children: React.ReactNode }) => {
+import { ReactNode } from "react";
+import Sidebar from "./admin/_components/Sidebar";
+const layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="min-h-screen">
-      {/* Set minimum height for the parent */}
-      <div className=" flex flex-col md:flex-row h-full gap-12">
-        {/* Sidebar Section */}
-        <div className="h-full">
-          <Sidebar />
-        </div>
-
-        {/* Main Content Section */}
-        <div className="flex-1">{children}</div>
-      </div>
+    <div className="dark:bg-dark min-h-screen flex">
+      <Sidebar />
+      <div className="w-full">{children}</div>
     </div>
   );
 };
 
-export default Layout;
+export default layout;

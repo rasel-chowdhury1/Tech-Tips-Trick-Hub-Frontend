@@ -11,7 +11,14 @@
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  "plugins": ["react", "unused-imports", "import", "@typescript-eslint", "jsx-a11y", "prettier"],
+  "plugins": [
+    "react",
+    "unused-imports",
+    "import",
+    "@typescript-eslint",
+    "jsx-a11y",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -33,10 +40,21 @@
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/click-events-have-key-events": "warn",
     "jsx-a11y/interactive-supports-focus": "warn",
-    "prettier/prettier": "warn",
+    "prettier/prettier": "off",
     "no-unused-vars": "off",
     "unused-imports/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "warn",
+    "padding-line-between-statements": [
+      "off",
+      { "blankLine": "any", "prev": "*", "next": "return" },
+      { "blankLine": "any", "prev": "block-like", "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": "*" },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
+      }
+    ],
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
@@ -65,7 +83,7 @@
             "position": "after"
           }
         ],
-        "newlines-between": "always"
+        "newlines-between": "never"
       }
     ],
     "react/self-closing-comp": "warn",
@@ -74,18 +92,14 @@
       {
         "callbacksLast": true,
         "shorthandFirst": true,
-        "noSortAlphabetically": false,
+        "noSortAlphabetically": true,
         "reservedFirst": true
       }
     ],
-    "padding-line-between-statements": [
+    "prettier/prettier": [
       "warn",
-      {"blankLine": "always", "prev": "*", "next": "return"},
-      {"blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
       {
-        "blankLine": "any",
-        "prev": ["const", "let", "var"],
-        "next": ["const", "let", "var"]
+        "endOfLine": "auto"
       }
     ]
   }

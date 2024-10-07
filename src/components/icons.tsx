@@ -1,7 +1,5 @@
 import * as React from "react";
-
 import { IconSvgProps } from "../types";
-
 export const Logo: React.FC<IconSvgProps> = ({
   size = 36,
   width,
@@ -9,17 +7,21 @@ export const Logo: React.FC<IconSvgProps> = ({
   ...props
 }) => (
   <svg
-    fill="none"
-    height={size || height}
+    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
+    fill="none"
     width={size || width}
+    height={size || height}
     {...props}
   >
+    <circle cx="30" cy="30" r="10" fill="#FF6F61" />
+    <circle cx="50" cy="20" r="10" fill="#FF6F61" />
+    <circle cx="70" cy="30" r="10" fill="#FF6F61" />
+    <ellipse cx="50" cy="60" rx="25" ry="15" fill="#FF6F61" />
+
     <path
-      clipRule="evenodd"
-      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-      fill="currentColor"
-      fillRule="evenodd"
+      d="M50 50c-2 0-4 1.5-5 3.5-1-2-3-3.5-5-3.5s-4 1.5-4 3.5c0 5 9 10 9 10s9-5 9-10c0-2-2-3.5-4-3.5z"
+      fill="#FFFFFF"
     />
   </svg>
 );

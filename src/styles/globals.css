@@ -2,7 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  scroll-behavior: smooth;
+.heading {
+  @apply lg:text-5xl md:text-3xl text-2xl font-bold lg:leading-[72px];
+}
+.subHeading {
+  @apply uppercase font-medium text-lg;
+}
+
+.dropdown-filter {
+  width: 170px !important;
+}
+
+.react-dropdown-select-content {
+  font-size: 16px !important;
+}
+.react-dropdown-select-content span {
+  font-size: 16px !important;
+}
+
+.react-dropdown-select-custom-style span {
+  background-color: #191919;
+  color: white;
+}
+.react-dropdown-select-custom-style span:hover {
+  background-color: #202020;
+  color: white;
+}
+.react-dropdown-select-item-selected {
+  background-color: #202020 !important;
+  color: white !important;
+}
+
+a:hover {
+  color: #ff6500;
+}
+
+.custom-btn {
+  @apply bg-primary text-white font-semibold hover:bg-primary-100;
+}
+.custom-btn-secondary {
+  @apply bg-secondary text-white font-semibold hover:bg-secondary-100;
 }
