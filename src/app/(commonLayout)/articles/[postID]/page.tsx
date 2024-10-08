@@ -150,19 +150,7 @@ const PostDetails = ({ params }: TProps) => {
               <FaRegCommentAlt /> {postInfo?.commentsCount}
             </p>
           </div>
-          <div className="py-10">
-            <Formik initialValues={{ feedback: "" }} onSubmit={onSubmit}>
-              <Form className="space-y-5">
-                <p className="text-xl font-bold">Share your opinion</p>
-                <Textarea name="feedback" />
-                <div className="flex justify-end">
-                  <Button className="custom-btn" type="submit">
-                    Post
-                  </Button>
-                </div>
-              </Form>
-            </Formik>
-          </div>
+          
           <div className="space-y-5">
             {allComments?.data?.map((item: TComment) => {
               return (
@@ -180,7 +168,10 @@ const PostDetails = ({ params }: TProps) => {
                         className="rounded-full size-[40px] object-cover"
                       />
                       <div>
-                        <Link href={item?.userId._id} className="font-bold">
+                        <Link
+                          href={`/profile/${item?.userId._id}`}
+                          className="font-bold"
+                        >
                           {item?.userId.name}
                         </Link>
                         <p>{formatDateTime(item?.createdAt)}</p>
@@ -217,6 +208,20 @@ const PostDetails = ({ params }: TProps) => {
                 </div>
               );
             })}
+          </div>
+
+          <div className="py-10">
+            <Formik initialValues={{ feedback: "" }} onSubmit={onSubmit}>
+              <Form className="space-y-5">
+                <p className="text-xl font-bold">Share your opinion</p>
+                <Textarea name="feedback" />
+                <div className="flex justify-end">
+                  <Button className="custom-btn" type="submit">
+                    Post
+                  </Button>
+                </div>
+              </Form>
+            </Formik>
           </div>
         </div>
       </div>

@@ -1,10 +1,14 @@
 "use client";
+import { useCurrentUser } from "@/src/redux/features/auth/authSlice";
+import { useAppSelector } from "@/src/redux/hooks";
+import { TUser } from "@/src/types";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FiMenu } from "react-icons/fi"; // Icon for menu toggle
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to control sidebar collapse in mobile
+  const user = useAppSelector(useCurrentUser) as TUser;
 
   // Function to toggle sidebar visibility
   const toggleSidebar = () => {
@@ -12,7 +16,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="">
+    <div className="dark:bg-dark bg-secondary-700">
       {/* Mobile Menu Toggle Button */}
 
       <button
@@ -35,7 +39,7 @@ const Sidebar = () => {
         </button>
         {/* Sidebar content */}
         <div className="p-5">
-          <h2 className="text-xl font-semibold mb-5">Sidebar Menu</h2>
+          <h2 className="text-2xl font-semibold mb-5 text-center text-orange-400">{user?.name || "Admin"}</h2>
           <ul className="space-y-4">
             <li>
               <Link href="/admin" className="block py-2 hover:bg-gray-700">

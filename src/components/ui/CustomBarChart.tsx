@@ -5,23 +5,24 @@ import {
   CategoryScale,
   LinearScale,
   PointElement,
-  BarElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
-  Filler,
+  ChartOptions,
+  LineControllerChartOptions,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
+// Registering necessary components from Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
-  BarElement,
+  LineElement,
   Title,
   Tooltip,
-  Legend,
-  Filler
+  Legend
 );
 
 type TProps = {
@@ -29,61 +30,80 @@ type TProps = {
   datasets: number[];
 };
 
-const CustomBarChart = ({ labels, datasets }: TProps) => {
+const CustomLineChart = ({ labels, datasets }: TProps) => {
+  // Data for the chart
   const data = {
     labels: labels,
     datasets: [
       {
-        // Title of Graph
-        label: "My Bar Chart",
+        label: "Project Statistics", // Data series label
         data: datasets,
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-          "rgba(255, 205, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-        ],
-        borderColor: [
-          "rgb(255, 99, 132)",
-          "rgb(255, 159, 64)",
-          "rgb(255, 205, 86)",
-          "rgb(75, 192, 192)",
-        ],
-        borderWidth: 1,
-        barPercentage: 1,
-        borderRadius: {
-          topLeft: 5,
-          topRight: 5,
-        },
+        fill: true,
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgb(75, 192, 192)",
+        borderWidth: 2,
+        tension: 0.4, // Smoothness of the line
       },
-      // insert similar in dataset object for making multi bar chart
     ],
   };
-  const options = {
+
+  // Chart options
+  const options: ChartOptions<'line'> = { // Ensure the type aligns with the Line chart
+    responsive: true, // Ensures the chart is responsive
+    maintainAspectRatio: false, // Allows for responsive height
     scales: {
       y: {
         title: {
           display: true,
-          text: "Y-axis Lable",
+          text: "Number of Statistics",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
         },
         display: true,
         beginAtZero: true,
-        max: 100,
       },
       x: {
         title: {
           display: true,
-          text: "x-axis Lable",
+          text: "Statistics Type",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
         },
         display: true,
       },
     },
+    plugins: {
+      legend: {
+        display: true,
+        position: "top", // You can change this to 'bottom' if preferred
+        labels: {
+          font: {
+            size: 12,
+            weight: "bold",
+          },
+        },
+      },
+      title: {
+        display: true,
+        text: "Tech Tips Hub Project Statistics", // Updated title
+        align: "center", // Center the title
+        font: {
+          size: 20, // Font size of the title
+          weight: "bold", // Font weight of the title
+        },
+      },
+    },
   };
+
   return (
-    <div style={{ width: "1000px" }}>
-      <Bar data={data} options={options} />
+    <div className="w-full mt-5 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[400px]"> 
+      <Line data={data} options={options} />
     </div>
   );
 };
 
-export default CustomBarChart;
+export default CustomLineChart;

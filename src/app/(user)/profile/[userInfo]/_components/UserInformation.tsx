@@ -10,12 +10,13 @@ import FollowingModal from "../../_components/FollowingModal";
 import FollowerModal from "../../_components/FollowerModal";
 import ErrorBoundary from "@/src/components/ErrorBoundary";
 import Loader from "@/src/components/ui/Loader";
+import { TUserDetails } from "@/src/types";
 
 const UserInformation = ({ userId }: any) => {
   const [isFollowerModalOpen, setIsFollowerModalOpen] = useState(false);
   const [isFollowingModalOpen, setIsFollowingModalOpen] = useState(false);
   const { data } = useGetUserInfoByIdQuery(userId);
-  const userDetails = data?.data;
+  const userDetails = data?.data as TUserDetails;
   const { data: userPosts } = useGetPostByAuthorQuery(userDetails?._id);
   console.log("userPosts:", userPosts);
   const userAllPosts = userPosts?.data;
@@ -29,10 +30,9 @@ const UserInformation = ({ userId }: any) => {
       <div className="lg:mt-[125px] lg:px-10 lg:py-5 py-4 px-4 space-y-5">
         <div className="flex items-center gap-5">
           <p className="text-2xl font-bold">{userDetails?.name}</p>
-          <button className="flex items-center gap-2 border rounded-xl px-3">
-            <RiVerifiedBadgeFill />
-            Get verified
-          </button>
+          {userDetails?.status === "premium" && (
+            <RiVerifiedBadgeFill className="text-secondary text-xl" />
+          )}
         </div>
         <p>{userDetails?.address}</p>
         <p>Joined {formatDateTime(userDetails?.createdAt)}</p>

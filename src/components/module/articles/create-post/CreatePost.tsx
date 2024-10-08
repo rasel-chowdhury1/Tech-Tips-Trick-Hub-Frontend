@@ -32,13 +32,15 @@ const CreatePost = () => {
         <div className="pt-4">
           <p className="text-lg font-medium mb-5">Have anything on mind?</p>
           <div className="flex items-center gap-5">
-            <Image
-              src={user?.avatar || "/anonymous-user.png"}
-              height={100}
-              width={100}
-              alt={"user"}
-              className="size-[60px] rounded-full border object-cover"
-            />
+            <Link href={`/profile`}>
+              <Image
+                src={user?.avatar || "/anonymous-user.png"}
+                height={100}
+                width={100}
+                alt={"user"}
+                className="size-[60px] rounded-full border object-cover"
+              />
+            </Link>
             <input
               onClick={() => setIsEditorModalOpen(true)}
               type="text"

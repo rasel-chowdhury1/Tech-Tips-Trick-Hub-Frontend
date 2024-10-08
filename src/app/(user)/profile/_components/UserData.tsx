@@ -31,7 +31,7 @@ const UserData = () => {
         <div className="flex items-center gap-5">
           <p className="text-2xl font-bold">{userDetails?.name}</p>
           {userDetails?.status === "premium" ? (
-            <RiVerifiedBadgeFill className="text-primary text-xl" />
+            <RiVerifiedBadgeFill className="text-secondary text-xl" />
           ) : (
             <Subscribe
               className="flex items-center gap-2 border rounded-xl px-3"

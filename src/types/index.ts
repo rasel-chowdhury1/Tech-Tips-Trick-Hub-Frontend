@@ -58,6 +58,7 @@ export interface TPostAuthor {
   name: string;
   email: string;
   avatar: string;
+  status: string;
   followers: string[];
 }
 

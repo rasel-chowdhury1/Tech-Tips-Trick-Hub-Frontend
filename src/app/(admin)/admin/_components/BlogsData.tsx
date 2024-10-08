@@ -28,11 +28,17 @@ const BlogsData = () => {
     <div className="md:p-5 pt-6 md:pt-auto">
       {/* Title and Subtitle */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Blog Management</h1>
-        <p className="text-gray-600 dark:text-slate-50">
-          View and manage all the blogs posted on the platform.
+      <h1
+          className="text-3xl sm:text-4xl font-semibold font-serif mb-3 text-center"
+        >
+          Blog Management
+        </h1>
+        <p  className="text-sm pb-5  text-center">
+        View and manage all the blogs posted on the platform.
         </p>
       </div>
+
+      
 
       {/* Table */}
       <div className="overflow-x-auto">

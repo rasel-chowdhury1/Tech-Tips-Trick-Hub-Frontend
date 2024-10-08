@@ -1,6 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-import { logout, useCurrentUser } from "@/src/redux/features/auth/authSlice";
+import {
+  logout,
+  TUser,
+  useCurrentUser,
+} from "@/src/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
 import { Link } from "@nextui-org/link";
 import {
@@ -14,19 +18,6 @@ import {
 } from "@nextui-org/navbar";
 import { Button } from "@nextui-org/button";
 import { ThemeSwitch } from "../theme-switch";
-
-const menuItems = [
-  "Profile",
-  "Dashboard",
-  "Activity",
-  "Analytics",
-  "System",
-  "Deployments",
-  "My Settings",
-  "Team Settings",
-  "Help & Feedback",
-  "Log Out",
-];
 
 export const links = [
   {
@@ -52,7 +43,7 @@ export const links = [
 ];
 
 const CustomNavbar = () => {
-  const user = useAppSelector(useCurrentUser);
+  const user = useAppSelector(useCurrentUser) as TUser;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const dispatch = useAppDispatch();
@@ -78,30 +69,40 @@ const CustomNavbar = () => {
       onMenuOpenChange={setIsMenuOpen}
       className="dark:bg-dark bg-secondary-700"
     >
+      {/* Small screen navbar toggle */}
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
 
+      {/* Small screen brand */}
       <NavbarContent className="sm:hidden pr-3" justify="start">
         <NavbarBrand>
           <Link href="/" className="font-semibold text-secondary text-xl">
-          TechMaster <span className="text-primary ms-1">Tips</span>
+             TechMaster <span className="text-primary ms-1">Trips</span>
           </Link>
         </NavbarBrand>
       </NavbarContent>
-      {/* large */}
+
+      {/* Large screen brand */}
       <NavbarContent className="hidden sm:flex gap-4" justify="start">
         <NavbarBrand>
           <Link href="/" className="font-semibold text-secondary text-xl">
-          TechMaster <span className="text-primary ms-1">Tips</span>
+            TechMaster <span className="text-primary ms-1">Trips</span>
           </Link>
         </NavbarBrand>
       </NavbarContent>
+
+      {/* Large screen links */}
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {links.map((item, index) => {
+          // Hide secure links if the user is not logged in
           if (item.secure && !user) return null;
+
+          // Hide the Dashboard link if the user role is not admin
+          if (item.title === "Dashboard" && user?.role !== "admin") return null;
+
           return (
             <NavbarItem key={index}>
               <Link color="foreground" href={item.href}>
@@ -112,6 +113,7 @@ const CustomNavbar = () => {
         })}
       </NavbarContent>
 
+      {/* User actions (Sign in/Logout) and theme switch */}
       <NavbarContent justify="end">
         {!user ? (
           <NavbarItem className="hidden lg:flex">
@@ -129,15 +131,41 @@ const CustomNavbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      {/* small */}
+      {/* Small screen menu */}
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={index}>
-            <Link className="w-full" href="#" size="lg">
-              {item}
+        {links.map((item, index) => {
+          // Hide secure links if the user is not logged in
+          if (item.secure && !user) return null;
+
+          // Hide the Dashboard link if the user role is not admin
+          if (item.title === "Dashboard" && user?.role !== "admin") return null;
+
+          return (
+            <NavbarMenuItem key={index}>
+              <Link className="w-full" href={item.href}>
+                {item.title}
+              </Link>
+            </NavbarMenuItem>
+          );
+        })}
+        {/* Sign in/Logout button in the menu for small screens */}
+        {!user ? (
+          <NavbarMenuItem>
+            <Link className="w-full" href="/login">
+              Sign in
             </Link>
           </NavbarMenuItem>
-        ))}
+        ) : (
+          <NavbarMenuItem>
+            <Button className="w-full custom-btn" onClick={handleLogout}>
+              Logout
+            </Button>
+          </NavbarMenuItem>
+        )}
+        {/* Theme switcher in the small screen menu */}
+        <NavbarMenuItem>
+          <ThemeSwitch />
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

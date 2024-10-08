@@ -31,6 +31,9 @@ const PostCard = ({ data, editingSystem = false }: TPostCard) => {
   return (
     <div>
       <div className="grid grid-cols-1 gap-10">
+        {data?.length <= 0 && (
+          <p className="text-xl font-medium text-center">No post available</p>
+        )}
         {data?.map((item: TPost) => {
           return (
             <div
@@ -40,7 +43,7 @@ const PostCard = ({ data, editingSystem = false }: TPostCard) => {
             >
               {/* header */}
               <div className="p-4 flex items-start justify-between">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 relative">
                   <Image
                     src={item?.author?.avatar}
                     alt="author"
@@ -48,6 +51,9 @@ const PostCard = ({ data, editingSystem = false }: TPostCard) => {
                     width={80}
                     className="size-[50px] object-cover rounded-full"
                   />
+                  {item?.author?.status === "premium" && (
+                    <RiVerifiedBadgeFill className="text-secondary text-xl absolute top-0" />
+                  )}
                   <div className="flex flex-col justify-between">
                     <Link
                       href={`/profile/${item.author._id}`}

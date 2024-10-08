@@ -27,12 +27,18 @@ const UsersData = () => {
       <div className="md:p-5 pt-6 md:pt-auto">
         {/* Title and Subtitle */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold">User Management</h1>
-          <p className="text-gray-600 dark:text-slate-50">
-            Manage all registered users, view details, and perform actions like
+        <h1
+          className="text-3xl sm:text-4xl font-semibold font-serif mb-3 text-center"
+        >
+          User Management
+        </h1>
+        <p  className="text-sm pb-10  text-center">
+        Manage all registered users, view details, and perform actions like
             editing or deleting users.
-          </p>
+        </p>
         </div>
+
+        
 
         {/* Table */}
         <div className="overflow-x-auto">

@@ -46,6 +46,8 @@ const Subscribe = ({
       amount: 20,
     };
 
+    console.log({data})
+
     try {
       const res = await makePayment(data).unwrap();
       if (res?.message === "Booking successful" && res.data?.payment_url) {
@@ -56,13 +58,19 @@ const Subscribe = ({
     } catch (error) {
       console.error(error);
       const err = error as TErrorResponse;
-      toast.error(
-        err.data?.errorMessages[0]?.message || "Something went wrong",
-        {
-          id: toastId,
-          duration: 2000,
-        }
-      );
+      console.log({err})
+      if(err.status === 401){
+        toast.error("Something went wrong")
+      }
+      else{
+        toast.error(
+          err.data?.errorMessages[0]?.message || "Something went wrong",
+          {
+            id: toastId,
+            duration: 2000,
+          }
+        );
+      }
     }
   };
 

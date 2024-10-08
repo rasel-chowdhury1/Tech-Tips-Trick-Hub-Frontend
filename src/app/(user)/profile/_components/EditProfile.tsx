@@ -1,4 +1,3 @@
-import FormikInput from "@/src/components/formik/FormikInput";
 import CustomModal from "@/src/components/ui/CustomModal";
 import { TUserDetails } from "@/src/types";
 import { useState } from "react";
@@ -28,7 +27,7 @@ const EditProfile = ({ userData }: TProps) => {
     <div>
       <button
         onClick={() => setIsEditProfileModalOpen(true)}
-        className="absolute right-5 bottom-3 flex items-center gap-2 font-semibold border px-3 rounded-full dark:bg-slate-800 "
+        className="absolute right-5 bottom-3 flex items-center gap-2 font-semibold border px-3 rounded-full dark:bg-slate-800 text-white"
       >
         <FaRegEdit />
         Edit profile
