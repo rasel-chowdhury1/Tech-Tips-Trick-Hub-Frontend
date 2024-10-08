@@ -64,24 +64,29 @@ const Sidebar = () => {
             ) : (
               data?.data?.map((item: TPopularPost) => {
                 return (
-                  <div key={item._id}>
+                  <div key={item?._id}>
                     <Link
                       href={`/articles/${item._id}`}
                       className="font-semibold"
                     >
-                      {item.title.slice(0, 40)}...
+                      {item?.title?.slice(0, 40)}...
                     </Link>
-                    <p>{item.content.slice(0, 70)}...</p>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: item?.content?.slice(0, 70) + "...",
+                      }}
+                    />
+                    {/* <p>{item.content.slice(0, 70)}...</p> */}
                     <div className="flex items-center justify-between">
                       <p className="flex items-center gap-2">
-                        <FaAnglesUp /> {item.upVotes.length}
+                        <FaAnglesUp /> {item?.upVotes?.length}
                       </p>
                       <Link
-                        href={`/profile/${item.author._id}`}
+                        href={`/profile/${item?.author?._id}`}
                         className="flex items-center gap-2"
                       >
                         <LiaUserEditSolid className="text-xl" />{" "}
-                        {item.author.name}
+                        {item?.author?.name}
                       </Link>
                     </div>
                   </div>
