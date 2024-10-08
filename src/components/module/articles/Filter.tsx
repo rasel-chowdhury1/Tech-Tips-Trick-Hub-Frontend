@@ -23,17 +23,15 @@ export const tagOptions = [
   },
 ];
 export const categoryOptions = [
-  { value: "adventure", label: "Adventure" },
-  { value: "eco-tourism", label: "Eco-tourism" },
-  { value: "luxury", label: "Luxury" },
-  { value: "wellness", label: "Wellness" },
-  { value: "cultural", label: "Cultural" },
-  { value: "culinary", label: "Culinary" },
-  { value: "historical", label: "Historical" },
-  { value: "beach", label: "Beach" },
-  { value: "mountain", label: "Mountain" },
-  { value: "road trip", label: "Road Trip" },
-  { value: "travel", label: "Travel" },
+  { value: "Watch", label: "watch" },
+  { value: "Software Engineering", label: "software_engineering" },
+  { value: "Tech", label: "tech" },
+  { value: "ML", label: "ml" },
+  { value: "VR", label: "vr" },
+  { value: "Mobile", label: "mobile" },
+  { value: "Macbook", label: "macbook" },
+  { value: "Gaming", label: "gaming" },
+  { value: "Others", label: "others" },
 ];
 
 const Filter = () => {
@@ -77,7 +75,7 @@ const Filter = () => {
         onChange={(e) => handleSort("searchTerm", e.target.value)}
         type="text"
         placeholder="Search here..."
-        className="h-[35px] px-3 w-full border focus-visible:outline-none"
+        className="h-[35px] px-3 w-full border-0 focus:outline-none focus-visible:ring-0"
       />
     </div>
   );

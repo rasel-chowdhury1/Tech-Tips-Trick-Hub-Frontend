@@ -4,8 +4,8 @@ import Select from "react-dropdown-select";
 import React from "react";
 
 interface Option {
-  value: string; // Adjust based on the type of values in your options
-  name: string;
+  name: string; // Adjust based on the type of values in your options
+  value: string;
 }
 
 interface DropdownProps {

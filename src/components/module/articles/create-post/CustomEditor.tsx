@@ -24,17 +24,15 @@ export const tagOptions = [
   },
 ];
 export const categoryOptions = [
-  { value: "adventure", name: "Adventure" },
-  { value: "eco-tourism", name: "Eco-tourism" },
-  { value: "luxury", name: "Luxury" },
-  { value: "wellness", name: "Wellness" },
-  { value: "cultural", name: "Cultural" },
-  { value: "culinary", name: "Culinary" },
-  { value: "historical", name: "Historical" },
-  { value: "beach", name: "Beach" },
-  { value: "mountain", name: "Mountain" },
-  { value: "road trip", name: "Road Trip" },
-  { value: "travel", name: "Travel" },
+  { value: "Watch", name: "watch" },
+  { value: "Software Engineering", name: "software_engineering" },
+  { value: "Tech", name: "tech" },
+  { value: "ML", name: "ml" },
+  { value: "VR", name: "vr" },
+  { value: "Mobile", name: "mobile" },
+  { value: "Macbook", name: "macbook" },
+  { value: "Gaming", name: "gaming" },
+  { value: "Others", name: "others" },
 ];
 const initialValues: TFormValues = {
   title: "",

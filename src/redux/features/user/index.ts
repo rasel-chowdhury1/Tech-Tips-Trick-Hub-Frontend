@@ -6,6 +6,10 @@ const userApi = baseApi.injectEndpoints({
       query: () => "/user-info",
       providesTags: ["User", "Post"],
     }),
+    getStatisticsInfo: builder.query({
+      query: () => "/statistics",
+      providesTags: ["User", "Post"],
+    }),
     getUserInfoById: builder.query({
       query: (id) => `/user-by-id/${id}`,
       providesTags: ["User", "Post"],
@@ -41,6 +45,7 @@ const userApi = baseApi.injectEndpoints({
 
 export const {
   useGetUserInfoQuery,
+  useGetStatisticsInfoQuery,
   useUpdateUserInfoMutation,
   useUpdateUserRoleMutation,
   useGetUserInfoByIdQuery,

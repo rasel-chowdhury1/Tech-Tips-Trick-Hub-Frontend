@@ -3,13 +3,16 @@ import ErrorBoundary from "@/src/components/ErrorBoundary";
 import CustomBarChart from "@/src/components/ui/CustomBarChart";
 import Loader from "@/src/components/ui/Loader";
 import { useCurrentUser } from "@/src/redux/features/auth/authSlice";
+import { useGetStatisticsInfoQuery } from "@/src/redux/features/user";
 import { useAppSelector } from "@/src/redux/hooks";
 import { TUser } from "@/src/types";
 import { Suspense } from "react";
-const page = async () => {
+const AdminDashboard = async () => {
   const user = useAppSelector(useCurrentUser) as TUser;
-
-  const res = await fetch("http://localhost:5000/api/statistics");
+  
+  const {data: statisticsInfo} = useGetStatisticsInfoQuery("");
+  console.log({statisticsInfo})
+  const res = await fetch("https://tech-tips-trick-hub-backend.vercel.app/api/statistics");
   const data = await res.json();
   const statistics = data?.data;
   console.log({statistics})
@@ -77,4 +80,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default AdminDashboard;
