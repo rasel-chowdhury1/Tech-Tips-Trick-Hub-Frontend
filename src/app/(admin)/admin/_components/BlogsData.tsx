@@ -38,8 +38,6 @@ const BlogsData = () => {
         </p>
       </div>
 
-      
-
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto overflow-x-scroll">
@@ -56,19 +54,21 @@ const BlogsData = () => {
           </thead>
           <tbody>
             {posts?.map((post: TPostDetails) => (
-              <tr key={post._id} className="border-t">
-                <td className="px-4 py-2">{post.title}</td>
-                <td className="px-4 py-2 text-center">{post.author.name}</td>
-                <td className="px-4 py-2 text-center">{post.tags}</td>
+              <tr key={post?._id} className="border-t">
+                <td className="px-4 py-2">{post?.title}</td>
+                <td className="px-4 py-2 text-center">{post?.author.name}</td>
+                <td className="px-4 py-2 text-center">{post?.tags}</td>
                 <td className="px-4 py-2 text-center">
-                  {new Date(post.createdAt).toLocaleDateString()}
+                  {new Date(post?.createdAt).toLocaleDateString()}
                 </td>
-                <td className="px-4 py-2 text-center">{post.upVotes.length}</td>
                 <td className="px-4 py-2 text-center">
-                  {post.isActive ? "Active" : "In active"}
+                  {post?.upVotes.length}
+                </td>
+                <td className="px-4 py-2 text-center">
+                  {post?.isActive ? "Active" : "In active"}
                 </td>
                 <td className="px-4 py-2 flex items-center justify-center gap-2">
-                  <UpdateBlog postId={post._id} />
+                  <UpdateBlog postId={post?._id} />
                 </td>
               </tr>
             ))}
