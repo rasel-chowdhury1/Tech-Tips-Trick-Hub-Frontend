@@ -17,7 +17,10 @@ export async function middleware(request: NextRequest) {
 
   const user = await getCurrentUser();
 
+  console.log("user -> ", {user})
+
   if (!user) {
+    console.log("exist this route")
     if (AuthRoutes.includes(pathname)) {
       return NextResponse.next();
     } else {
@@ -40,5 +43,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/profile", "/profile/:page*", "/admin", "/login", "/register"],
+  matcher: ["/profile", "/profile/:page*", "/admin", "/login", "/register", ""],
 };

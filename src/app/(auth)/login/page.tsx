@@ -47,9 +47,9 @@ const LoginPage = () => {
       <div className="bg-slate-950 p-8 m-5 rounded-lg shadow-lg w-full max-w-md space-y-6">
         {/* Login Header */}
         <h1 className="text-3xl font-semibold text-center text-white mb-6">
-          Log in to your account
+        Login with <span className="font-semibold text-secondary text-3xl" >TechMaster </span>
         </h1>
-
+        <p className="mb-4 text-white">Welcome Back! Let&lsquo;s Get Started</p>
         {/* Formik Form */}
         <Formik
           initialValues={{ email: "", password: "" }}

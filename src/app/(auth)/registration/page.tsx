@@ -63,9 +63,8 @@ const Registration = () => {
     <div className="flex items-center justify-center">
       <div className="bg-slate-950 p-8 m-5 rounded-lg shadow-lg w-full max-w-md space-y-6">
         {/* Registration Header */}
-        <h1 className="text-2xl font-bold text-center mb-6">
-          Create your account
-        </h1>
+        <h3 className="my-2 text-center text-2xl font-bold">Register with <span className="font-semibold text-secondary text-3xl" >TechMaster </span></h3>
+      <p className="mb-4">Find valuable content and post of tech related...</p>
 
         {/* Formik Form */}
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>

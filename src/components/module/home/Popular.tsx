@@ -1,15 +1,13 @@
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
-import b1Img from "@/src/assets/banner/techMaster3.png";
-import b3Img from "@/src/assets/banner/techMaster4.png";
-import b2Img from "@/src/assets/banner/techMaster6.png";
+
 const articles = [
   {
     title: "Understanding Cloud Architecture",
     content:
       "Cloud computing has revolutionized the way software applications are deployed and scaled.",
     upvotes: 150,
-    image: b1Img,
+    image: "/popular/techMaster3.png",
     author: "Piklu",
   },
   {
@@ -17,7 +15,7 @@ const articles = [
     content:
       "Machine learning is transforming industries by enabling systems to learn from data..",
     upvotes: 250,
-    image: b3Img,
+    image: "/popular/techMaster4.png",
     author: "Rasel",
   },
   {
@@ -25,7 +23,7 @@ const articles = [
     content:
       "NLP is a branch of AI that enables computers to understand and process human language.",
     upvotes: 300,
-    image: b2Img,
+    image: "/popular/techMaster6.png",
     author: "Sara Nomad",
   },
 ];

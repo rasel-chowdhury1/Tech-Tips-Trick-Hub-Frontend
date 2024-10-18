@@ -15,7 +15,7 @@ const CommentApi = baseApi.injectEndpoints({
           body: commentInfo,
         };
       },
-      invalidatesTags: ["Comment"],
+      invalidatesTags: ["Comment","Post"],
     }),
     updateComment: builder.mutation({
       query: ({ id, commentInfo }) => {
@@ -36,7 +36,7 @@ const CommentApi = baseApi.injectEndpoints({
           method: "DELETE",
         };
       },
-      invalidatesTags: ["Comment"],
+      invalidatesTags: ["Comment","Post"],
     }),
   }),
 });

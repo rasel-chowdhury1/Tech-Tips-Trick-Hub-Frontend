@@ -1,7 +1,5 @@
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
-import b1Img from "@/src/assets/banner/techMaster1.png";
-import b3Img from "@/src/assets/banner/techMaster2.png";
 
 const Banner = () => {
   return (
@@ -24,7 +22,7 @@ const Banner = () => {
         <div className="space-y-5">
           <div className="flex justify-end">
             <Image
-              src={b1Img}
+              src="/popular/techMaster1.png"
               alt="banner"
               height={400}
               width={400}
@@ -33,7 +31,7 @@ const Banner = () => {
           </div>
           <div className="">
             <Image
-              src={b3Img}
+              src="/popular/techMaster2.png"
               alt="banner"
               height={300}
               width={300}

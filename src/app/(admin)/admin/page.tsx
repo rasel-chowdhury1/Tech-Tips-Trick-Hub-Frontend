@@ -11,26 +11,30 @@ const AdminDashboard = async () => {
   const user = useAppSelector(useCurrentUser) as TUser;
   
   const {data: statisticsInfo} = useGetStatisticsInfoQuery("");
-  console.log({statisticsInfo})
-  const res = await fetch("https://tech-tips-trick-hub-backend.vercel.app/api/statistics");
-  const data = await res.json();
-  const statistics = data?.data;
-  console.log({statistics})
+  const { 
+    totalUsers = 0, 
+    totalPremiumUsers = 0, 
+    totalBasicUsers = 0, 
+    totalContents = 0, 
+    totalInactiveContents = 0, 
+    totalActiveContents = 0 
+  } = statisticsInfo?.data || {};
+
   const labels = [
     "Total Users",
     "Total Premium Users",
     "Total Basic Users",
     "Total Contents",
-    "Total Active Contents",
     "Total Inactive Contents",
+    "Total Active Contents",
   ];
   const datasets = [
-    statistics?.totalUsers,
-    statistics?.totalPremiumUsers,
-    statistics?.totalBasicUsers,
-    statistics?.totalContents,
-    statistics?.totalActiveContents,
-    statistics?.totalInactiveContents,
+    totalUsers,
+    totalPremiumUsers,
+    totalBasicUsers,
+    totalContents,
+    totalInactiveContents,
+    totalActiveContents,
   ];
   return (
     <div className="md:p-5 pt-6 md:pt-auto w-full">
@@ -61,15 +65,15 @@ const AdminDashboard = async () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="stat-card p-4 bg-gray-100 rounded shadow">
               <h3 className="text-xl font-semibold text-center">Total Users</h3>
-              <p className="text-2xl font-bold text-center">{statistics?.totalUsers || 350}</p>
+              <p className="text-2xl font-bold text-center">{totalUsers || 350}</p>
             </div>
             <div className="stat-card p-4 text-center bg-orange-300 rounded shadow">
               <h2 className="text-xl font-semibold">Total Content</h2>
-              <p className="text-2xl font-bold">{statistics?.totalContents || 800} </p>
+              <p className="text-2xl font-bold">{totalContents || 800} </p>
             </div>
             <div className="stat-card p-4 text-center bg-cyan-300 rounded shadow">
               <h2 className="text-xl font-semibold">Premimum User</h2>
-              <p className="text-2xl font-bold">{statistics?.totalPremiumUsers || 125}</p>
+              <p className="text-2xl font-bold">{totalPremiumUsers || 125}</p>
             </div>
           </div>
         </div>

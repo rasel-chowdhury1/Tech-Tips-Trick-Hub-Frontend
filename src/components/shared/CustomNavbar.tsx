@@ -37,7 +37,12 @@ export const links = [
   },
   {
     title: "Dashboard",
-    href: "/admin/users",
+    href: "/admin",
+    secure: true,
+  },
+  {
+    title: "MyDashboard",
+    href: "/userDashboard",
     secure: true,
   },
 ];
@@ -47,7 +52,7 @@ const CustomNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const dispatch = useAppDispatch();
-
+  console.log({user})
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -102,6 +107,7 @@ const CustomNavbar = () => {
 
           // Hide the Dashboard link if the user role is not admin
           if (item.title === "Dashboard" && user?.role !== "admin") return null;
+          if (item.title === "UserDashboard" && user?.role !== "user") return null;
 
           return (
             <NavbarItem key={index}>

@@ -38,9 +38,8 @@ const Recover = () => {
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-slate-950 p-8 m-5 rounded-lg shadow-lg w-full max-w-md space-y-6">
         {/* Login Header */}
-        <h1 className="text-3xl font-semibold text-center text-white mb-6">
-          Log in to your account
-        </h1>
+        <h3 className="my-2 text-center text-2xl font-bold">Recover with <span className="font-semibold text-secondary text-3xl" >TechMaster </span></h3>
+
 
         {/* Formik Form */}
         <Formik
@@ -56,7 +55,7 @@ const Recover = () => {
                 type="submit"
                 className="w-full bg-blue-600 text-white hover:bg-blue-700"
               >
-                Log In
+                Recover
               </Button>
             </Form>
           )}
