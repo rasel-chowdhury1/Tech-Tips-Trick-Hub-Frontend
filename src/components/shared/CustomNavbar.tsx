@@ -72,7 +72,7 @@ const CustomNavbar = () => {
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
-      className="dark:bg-dark bg-secondary-700"
+      className="dark:bg-dark bg-white"
     >
       {/* Small screen navbar toggle */}
       <NavbarContent className="sm:hidden" justify="start">
@@ -107,7 +107,7 @@ const CustomNavbar = () => {
 
           // Hide the Dashboard link if the user role is not admin
           if (item.title === "Dashboard" && user?.role !== "admin") return null;
-          if (item.title === "UserDashboard" && user?.role !== "user") return null;
+          if (item.title === "MyDashboard" && user?.role !== "user") return null;
 
           return (
             <NavbarItem key={index}>
