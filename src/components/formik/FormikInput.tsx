@@ -27,6 +27,9 @@ const FormikInput: React.FC<InputProps> = ({
       <Field name={name}>
         {({ field }: FieldProps) => (
           <>
+          {label && (
+          <p className={`text-ascent-2 text-sm mb-1 ml-1 `}>{label}</p>
+        )}
             <Input
               {...field}
               size="sm"

@@ -69,7 +69,6 @@ const CustomNavbar = () => {
 
   return (
     <Navbar
-      isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       className="dark:bg-dark bg-white"

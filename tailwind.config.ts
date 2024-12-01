@@ -8,12 +8,16 @@ module.exports = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
       colors: {
+        bgColor: 'rgb(var(--color-bg) / <alpha-value>)',
+        bgPrimary: 'rgb(var(--color-primary) / <alpha-value>)',
+        blue: 'rgb(var(--color-blue) / <alpha-value>)',
         primary: {
           DEFAULT: "#FF6500",
           100: "#e65b00",
