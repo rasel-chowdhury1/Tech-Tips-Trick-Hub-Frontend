@@ -111,7 +111,7 @@ const LoginPage = () => {
           <p className='text-ascent-1 text-base font-semibold'>
             Log in to your account
           </p>
-          <span className='text-sm mt-2 text-ascent-2 mb-6'>Welcome back</span>
+          <Link href="/" className='text-sm mt-2 text-ascent-2 mb-6'>Welcome back</Link>
 
           <Formik
           initialValues={{ email: "", password: "" }}

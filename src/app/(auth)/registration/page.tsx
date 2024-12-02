@@ -129,15 +129,15 @@ const Registration = () => {
     // </div>
 
 <div className='bg-bgColor w-full h-[100vh] flex items-center justify-center p-6'>
-<div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex flex-row-reverse bg-primary rounded-xl overflow-hidden shadow-xl'>
+<div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex flex-row-reverse bg-bgPrimary rounded-xl overflow-hidden shadow-xl'>
   {/* LEFT */}
   <div className='w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center '>
-    <div className='w-full flex gap-2 items-center mb-6'>
-      <div className='p-2 bg-[#065ad8] rounded text-white'>
+    <div className='w-full flex gap-2 items-center justify-center'>
+      <div className=' text-white'>
         {/* <TbSocial /> */}
       </div>
-      <span className='text-2xl text-[#065ad8] ' font-semibold>
-        ShareFun
+      <span className='text-2xl text-[#065ad8] font-semibold' >
+        TechMaster
       </span>
     </div>
 
@@ -157,12 +157,15 @@ const Registration = () => {
 
         {/* Password */}
         <FormikInput name="password" label="Password" type="password" />
+        
+        <div className='w-full flex flex-col lg:flex-row gap-1 md:gap-2'>
+            {/* Phone */}
+          <FormikInput name="phone" label="Phone" type="tel" />
 
-        {/* Phone */}
-        <FormikInput name="phone" label="Phone" type="tel" />
-
-        {/* Address */}
-        <FormikInput name="address" label="Address" />
+          {/* Address */}
+          <FormikInput name="address" label="Address" />
+        </div>
+        
 
         {/* File Input for Avatar */}
         <div className="space-y-1">
@@ -192,7 +195,7 @@ const Registration = () => {
     )}
   </Formik>
 
-    <p className='text-ascent-2 text-sm text-center'>
+    <p className='text-ascent-2 mt-1 text-sm text-center'>
       Already has an account?{" "}
       <Link
         href='/login'
